@@ -27,6 +27,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+//it works same if i add this line or not???!!!
+//app.UseAuthentication();
+
+//this is used for  [Authorize] metadata
 app.UseAuthorization();
 
 app.MapControllerRoute(
