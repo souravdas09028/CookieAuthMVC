@@ -13,7 +13,7 @@ namespace CookieAuthMVC.Controllers
             ClaimsPrincipal user = HttpContext.User;
 
             if (user.Identity.IsAuthenticated)
-                return RedirectToAction("Home", "Index");
+                return RedirectToAction("Index", "Home");
 
             return View();
         }
@@ -32,13 +32,13 @@ namespace CookieAuthMVC.Controllers
                 AuthenticationProperties properties = new AuthenticationProperties()
                 {
                     AllowRefresh = true,
-                    IsPersistent = false
+                    IsPersistent = true
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(identity), properties);
 
-                return RedirectToAction("Home", "Index");
+                return RedirectToAction("Index", "Home");
             }
 
             ViewData["ValidateMessage"] = "User not found";
